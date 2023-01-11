@@ -1,0 +1,7 @@
+item,supplier_id,price,category_id
+pork,2,100,1
+chicken,2,50,1
+apple,4,50,2
+cucumber,5,30,3
+long spaghetti,6,35.99,6
+orange juice,3,40,5
