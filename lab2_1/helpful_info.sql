@@ -79,3 +79,7 @@ select * FROM user_tables;
 SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
 
+insert into customer (name, surname, phone) 
+	values ('Yan', 'Portnov', '91115556655');
+delete from customer where id=45;
+update customer set name = 'Max' where id=1;

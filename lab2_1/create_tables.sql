@@ -7,7 +7,7 @@ CREATE TABLE order_detail (
 
 CREATE TABLE orders (
   id number generated always as identity primary key,
-  date date NOT NULL,
+  "date" date NOT NULL,
   customer_id number(6, 0) NOT NULL,
   sale_id number(3, 0)
 );
