@@ -1,0 +1,49 @@
+-- create iot 
+CREATE TABLESPACE vendors_tbs
+DATAFILE 'C:\APP\ALEXM\PRODUCT\18.0.0\ORADATA\XE\SHOP_PDB\VENDORS_TBS.dbf'
+SIZE 500M;
+
+CREATE TABLESPACE overflow_tables
+DATAFILE 'C:\APP\ALEXM\PRODUCT\18.0.0\ORADATA\XE\SHOP_PDB\OVERFLOW_TABLES.dbf'
+SIZE 500M;
+
+
+CREATE TABLE vendors_new(
+  id number(4, 0),
+  name varchar2(100) NOT NULL,
+  phone varchar2(16) NOT NULL,
+  address varchar2(200),
+  CONSTRAINT vendors_new_pk PRIMARY KEY (id))
+  ORGANIZATION INDEX TABLESPACE vendors_tbs
+  PCTTHRESHOLD 25
+  INCLUDING name
+  OVERFLOW TABLESPACE overflow_tables;
+  
+-- create hash-cluster
+CREATE TABLESPACE hash_cluster
+DATAFILE 'C:\APP\ALEXM\PRODUCT\18.0.0\ORADATA\XE\SHOP_PDB\HASH_CLUSTER.dbf'
+SIZE 500M;
+
+CREATE CLUSTER vendor_hash_cluster (
+	id number(4, 0),
+  	name varchar2(100) NOT NULL,
+  	phone varchar2(16) NOT NULL,
+  	address varchar2(200),
+
+
+	trialno NUMBER(5,0)) PCTUSED 80
+PCTFREE 5 TABLESPACE users
+
+STORAGE (INITIAL 250K NEXT 50K MINEXTENTS 1 MAXEXTENTS 3 PCTINCREASE 0)
+
+SIZE 2K
+
+HASH IS trialno HASHKEYS 150;
+
+CREATE TABLE trial (
+
+trialno NUMBER(5,0) PRIMARY KEY,
+
+...)
+
+CLUSTER trial_cluster (trialno);
